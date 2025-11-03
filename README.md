@@ -1,115 +1,356 @@
-# 🤖 Aster Royale: The AI Arena
+# 🧠 NEURAL/ORDER
 
-> A live showcase of AI trading agents competing on Aster. Real-time leaderboard, trade feeds, and AI performance analytics.
+> **AI-Powered Trading Arena** — Watch multiple AI agents compete in real-time cryptocurrency futures trading on Aster Exchange.
 
-## 🎯 Concept
+## 🎯 What is NEURAL/ORDER?
 
-**Aster Royale: The AI Arena** is a proof-of-concept platform that showcases live AI trading agents competing on Aster using simulated data. Each AI agent represents a different trading strategy, and their performance updates in real-time with glowing animations, live trade feeds, and dynamic leaderboards.
+**NEURAL/ORDER** is an autonomous trading platform where multiple AI agents powered by different Large Language Models (LLMs) compete against each other in cryptocurrency futures trading. Each agent operates independently, making trading decisions based on market analysis, executing trades, and competing for the top spot on the leaderboard.
 
-This is **not** a user-facing trading platform — it's a **visual showcase** of Aster's potential, demonstrating what AI-powered trading could look like.
+Think of it as a **battle royale** of AI trading bots, where each bot uses a different AI model (OpenAI GPT, Google Gemini, Anthropic Claude, DeepSeek, Grok, Qwen) to analyze markets and execute trades autonomously.
 
-## 🏗️ Tech Stack
+## 🏗️ How It Works
 
+### The System Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Frontend (Next.js)                   │
+│  • Real-time leaderboard                                │
+│  • Live trade feed                                      │
+│  • Agent performance charts                             │
+│  • Balance tracking                                     │
+└─────────────────────────────────────────────────────────┘
+                        ↕ API Calls
+┌─────────────────────────────────────────────────────────┐
+│              Trading Engine (Every 30s)                  │
+│  1. Fetch market data from Aster Exchange               │
+│  2. Each AI agent analyzes market                       │
+│  3. Agents make trading decisions                       │
+│  4. Execute trades (paper or real)                      │
+│  5. Update balances and statistics                      │
+└─────────────────────────────────────────────────────────┘
+                        ↕
+┌─────────────────────────────────────────────────────────┐
+│              AI Agents (Multiple LLMs)                   │
+│  • OPENAI (GPT-4o-mini)                                 │
+│  • GEMINI (Google Gemini)                               │
+│  • CLAUDE (Anthropic Claude)                            │
+│  • DEEPSEEK (DeepSeek Chat)                             │
+│  • GROK (xAI Grok)                                      │
+│  • QWEN (Qwen via OpenRouter)                           │
+└─────────────────────────────────────────────────────────┘
+                        ↕
+┌─────────────────────────────────────────────────────────┐
+│                 Aster Exchange API                       │
+│  • Futures trading (BTCUSDT, ETHUSDT, etc.)             │
+│  • Real-time market data                                │
+│  • Order execution                                       │
+└─────────────────────────────────────────────────────────┘
+```
+
+### Trading Cycle
+
+Every **30 seconds**, the system:
+
+1. **Fetches Market Data** — Gets current prices, volume, and order book data for all trading pairs
+2. **Agent Analysis** — Each AI agent receives market data and analyzes it using their LLM
+3. **Decision Making** — Agents decide to:
+   - **OPEN** a new position (LONG or SHORT)
+   - **CLOSE** an existing position
+   - **WAIT** for better opportunities
+4. **Trade Execution** — Executes trades based on agent decisions
+5. **Balance Update** — Calculates PnL, updates balances, tracks statistics
+6. **Leaderboard Update** — Frontend displays updated rankings and performance
+
+## 🤖 AI Agents Explained
+
+Each agent is powered by a different LLM and operates independently:
+
+### **OPENAI Agent**
+- **Model:** GPT-4o-mini
+- **Strategy:** Momentum and trend analysis
+- **Characteristics:** Fast decision-making, cost-efficient
+
+### **GEMINI Agent**
+- **Model:** Google Gemini Pro/Flash
+- **Strategy:** Multi-factor market analysis
+- **Characteristics:** Strong analytical capabilities
+
+### **CLAUDE Agent**
+- **Model:** Anthropic Claude Sonnet/Haiku
+- **Strategy:** Risk-aware trading with detailed reasoning
+- **Characteristics:** Conservative approach, thorough analysis
+
+### **DEEPSEEK Agent**
+- **Model:** DeepSeek Chat
+- **Strategy:** Pattern recognition and technical analysis
+- **Characteristics:** Cost-effective, fast responses
+
+### **GROK Agent**
+- **Model:** xAI Grok
+- **Strategy:** Real-time market sentiment analysis
+- **Characteristics:** Latest market insights
+
+### **QWEN Agent**
+- **Model:** Qwen via OpenRouter
+- **Strategy:** Statistical arbitrage and mean reversion
+- **Characteristics:** Free tier available, good performance
+
+## 🎮 Features
+
+### Real-Time Leaderboard
+- Live ranking of all AI agents
+- PnL tracking (profit/loss percentage)
+- Win rate statistics
+- 24-hour trading volume
+- Total number of trades
+
+### Live Trade Feed
+- Real-time scrolling feed of all trades
+- Shows which agent made the trade
+- Entry/exit prices
+- Profit/loss on each trade
+- Animated updates
+
+### Agent Detail Pages
+- Individual agent performance charts
+- Trade history
+- Position details
+- Balance progression over time
+- AI reasoning for each trade
+
+### Dashboard Analytics
+- Total arena volume
+- Number of active positions
+- Overall market statistics
+- Agent performance comparisons
+
+## 🛠️ Tech Stack
+
+### Frontend
 - **Framework:** Next.js 15 (App Router)
 - **Language:** TypeScript
 - **Styling:** TailwindCSS + shadcn/ui
 - **Animations:** Framer Motion
-- **State Management:** React Hooks + useState
-- **Data:** Simulated AI trading activity (custom generator)
-- **Aesthetic:** Dark, neon, glassmorphism, crypto-native
+- **Real-time Updates:** React Hooks + API polling
+
+### Backend
+- **API Routes:** Next.js API routes
+- **Database:** MongoDB (MongoDB Atlas)
+- **Trading Engine:** Custom TypeScript engine
+- **Market Data:** Aster Exchange API
+
+### AI Integration
+- **OpenAI:** Official OpenAI SDK
+- **Gemini:** Google Generative AI SDK
+- **Claude:** Anthropic SDK
+- **DeepSeek:** OpenAI-compatible API
+- **Grok:** OpenAI-compatible API (xAI)
+- **Qwen:** OpenRouter API
+
+### Trading
+- **Exchange:** Aster Exchange
+- **Type:** Futures trading (perpetual contracts)
+- **Mode:** Paper trading (simulated) or real trading
+- **API:** Aster Futures API v3 (Web3 signing)
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
+- **Node.js** 18 or higher
+- **npm** or **yarn**
+- **MongoDB Atlas** account (or local MongoDB)
+- **API Keys** for AI models you want to use:
+  - OpenAI API key
+  - Gemini API key (optional)
+  - Claude API key (optional)
+  - DeepSeek API key (optional)
+  - Grok API key (optional)
+  - OpenRouter API key (for Qwen, optional)
 
 ### Installation
 
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/YSF-web3/neural-order.git
+   cd neural-order
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+4. **Configure `.env.local`**
+   ```env
+   # MongoDB Connection
+   MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/asterroyale2?retryWrites=true&w=majority&appName=Cluster0
+   
+   # AI Model API Keys (at least one required)
+   OPENAI_API_KEY=sk-your-openai-api-key-here
+   GEMINI_API_KEY=your-gemini-api-key-here
+   CLAUDE_API_KEY=sk-ant-your-claude-api-key-here
+   DEEPSEEK_API_KEY=sk-your-deepseek-api-key-here
+   GROK_API_KEY=xai-your-grok-api-key-here
+   OPENROUTER_API_KEY=your-openrouter-api-key-here
+   
+   # Optional: Aster Exchange API (for real trading)
+   ASTER_USER_ADDRESS=0xYourMainAccountAddress
+   ASTER_SIGNER_ADDRESS=0xYourAPIWalletAddress
+   ASTER_SIGNER_PRIVATE_KEY=0xYourPrivateKey
+   ```
+
+5. **Initialize the database**
+   ```bash
+   # Visit this URL in your browser or use curl:
+   curl -X POST http://localhost:3000/api/agents
+   ```
+
+6. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+7. **Open your browser**
+   ```
+   http://localhost:3000
+   ```
+
+### Starting the Trading Engine
+
+The trading engine needs to run separately to process agents every 30 seconds.
+
+**Option 1: Using the API endpoint** (requires external cron)
 ```bash
-# Install dependencies
-npm install
-
-# Copy environment variables
-cp .env.local.example .env.local
-
-# Run development server
-npm run dev
+# Call this endpoint every 30 seconds:
+curl http://localhost:3000/api/process-agents
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Environment Variables
-
-Create a `.env.local` file with the following:
-
-```env
-NEXT_PUBLIC_ASTER_API_URL=https://api.aster.fi
+**Option 2: Using Vercel Cron** (if deployed on Vercel)
+```javascript
+// vercel.json
+{
+  "crons": [{
+    "path": "/api/process-agents",
+    "schedule": "*/30 * * * * *"
+  }]
+}
 ```
+
+**Option 3: Manual execution** (for testing)
+Visit: `http://localhost:3000/api/process-agents`
+
+## 📊 Database Schema
+
+### Agent Model
+```typescript
+{
+  name: string;              // Agent name (OPENAI, GEMINI, etc.)
+  strategy: string;          // Trading strategy description
+  balance: number;          // Current balance in USDT
+  pnl: number;              // Profit/Loss percentage
+  pnlAbsolute: number;      // Absolute PnL in USDT
+  winRate: number;          // Win rate percentage
+  totalTrades: number;      // Total number of trades
+  volume24h: number;        // 24-hour trading volume
+  activePositions: Array;    // Current open positions
+  status: string;           // 'active' | 'slow' | 'error'
+}
+```
+
+### Position Model
+```typescript
+{
+  agentId: string;          // Agent identifier
+  coin: string;             // Trading pair (BTC, ETH, etc.)
+  signal: string;           // 'long' | 'short'
+  entry_price: number;      // Entry price
+  exit_price: number;       // Exit price (if closed)
+  profit_target: number;    // Take profit target
+  stop_loss: number;        // Stop loss level
+  leverage: number;         // Leverage multiplier
+  size_usd: number;         // Position size in USDT
+  pnl: number;             // Profit/Loss percentage
+  status: string;           // 'open' | 'closed'
+}
+```
+
+### Trade Model
+```typescript
+{
+  agentId: string;          // Agent identifier
+  pair: string;             // Trading pair
+  side: string;             // 'long' | 'short'
+  amount: number;           // Trade amount
+  price: number;            // Execution price
+  pnl: number;             // Profit/Loss
+  tradeType: string;       // 'entry' | 'exit'
+  timestamp: number;        // Trade timestamp
+}
+```
+
+## 🎯 Trading Modes
+
+### Paper Trading (Default)
+- **Safe for testing** — No real money at risk
+- **Simulated execution** — Trades are tracked but not executed on exchange
+- **Full functionality** — All features work except actual order execution
+- **Perfect for development** — Test strategies without financial risk
+
+### Real Trading
+- **Live execution** — Real trades on Aster Exchange
+- **Requires API keys** — Aster Exchange API wallet configuration
+- **Risk management** — Built-in position limits and risk controls
+- **Use with caution** — Real money at risk
+
+To enable real trading, configure Aster API credentials in environment variables and update agent configurations.
 
 ## 📁 Project Structure
 
 ```
+neural-order/
 ├── app/                    # Next.js 15 App Router
-│   ├── layout.tsx          # Root layout
-│   ├── page.tsx            # Arena dashboard (main page)
-│   ├── agent/[id]/         # Dynamic agent detail pages
-│   │   └── page.tsx        # Individual agent pages
-│   ├── leaderboard/        # Leaderboard page (placeholder)
-│   ├── profile/            # Profile page (placeholder)
-│   └── season/             # Season details (placeholder)
-├── components/             # Reusable UI components
-│   ├── arena/              # Arena-specific components
-│   │   ├── AIAgentCard.tsx # Agent card component
-│   │   └── LiveFeed.tsx   # Live trade feed
-│   └── ui/                 # shadcn/ui components
-├── lib/                    # Utilities and logic
-│   ├── simulate.ts         # AI agent data simulation
-│   └── utils.ts           # Helper functions
-├── types/                  # TypeScript type definitions
-├── docs/                   # API documentation
-└── public/                 # Static assets
+│   ├── api/               # API routes
+│   │   ├── agents/        # Agent management
+│   │   ├── process-agents/# Trading engine endpoint
+│   │   ├── trades/        # Trade history
+│   │   └── positions/      # Position tracking
+│   ├── agent/[id]/        # Individual agent pages
+│   ├── leaderboard/       # Leaderboard page
+│   └── dashboard/         # Main dashboard
+├── components/            # React components
+│   ├── arena/            # Trading arena components
+│   └── ui/               # Reusable UI components
+├── lib/                   # Core logic
+│   ├── trading-engine.ts  # Trading engine
+│   ├── openai-service.ts # OpenAI integration
+│   ├── gemini-service.ts # Gemini integration
+│   └── mongodb.ts        # Database connection
+├── models/                # MongoDB models
+│   ├── Agent.ts
+│   ├── Position.ts
+│   └── Trade.ts
+├── docs/                  # Documentation
+└── scripts/               # Utility scripts
 ```
 
-## 🎨 Design Philosophy
+## 🔐 Security
 
-- **Dark Theme First:** Crypto-native aesthetic with glassmorphism
-- **Motion Rich:** Smooth animations and transitions via Framer Motion
-- **Responsive:** Mobile-first design approach
-- **Accessible:** ARIA labels and keyboard navigation
-
-## 🎯 Core Features
-
-### ✅ Implemented
-
-- **Live AI Agent Leaderboard** — Real-time ranking of AI trading agents
-- **Individual Agent Detail Pages** — Click any agent for expanded stats and trade history
-- **Simulated Trading Activity** — Auto-updating PnL, win rate, and volume
-- **Live Trade Feed** — Scrolling ticker of recent AI trades with animations
-- **Arena Stats Dashboard** — Total volume, trades, and profitable agents
-- **Animated Background** — Pulsing gradients and glowing effects
-- **Clickable Agent Cards** — Navigate to dedicated pages for each AI agent
-
-## 🤖 AI Agents
-
-The platform simulates 8 AI trading agents with different strategies:
-
-- **NeuralSniper** — Momentum Trading
-- **QuantumVortex** — Mean Reversion
-- **VoltCrane** — Breakout Detection
-- **DataSage** — Statistical Arbitrage
-- **NovaHawk** — Trend Following
-- **PhantomLens** — Volatility Trading
-- **DeepRipple** — Market Making
-- **NeuralStream** — Machine Learning
-
-Each agent's performance updates live with simulated trades, PnL, and "AI thoughts".
+- **No hardcoded secrets** — All API keys use environment variables
+- **Private keys** — Stored securely, never committed to git
+- **Environment variables** — Required for all sensitive data
+- **API rate limits** — Respects API rate limits for all services
 
 ## 🛠️ Development
 
 ```bash
-# Run dev server
+# Run development server
 npm run dev
 
 # Build for production
@@ -120,20 +361,43 @@ npm start
 
 # Run linting
 npm run lint
+
+# Type checking
+npm run type-check
 ```
 
-## 📝 Code Style
+## 📚 Documentation
 
-- TypeScript everywhere
-- Modular, well-commented code
-- Clean separation of UI, logic, and data fetching
-- Follow `.cursorrules` for conventions
+- **[SETUP.md](./SETUP.md)** — Initial setup guide
+- **[SETUP_BACKEND.md](./SETUP_BACKEND.md)** — Backend setup
+- **[REAL_TRADING_GUIDE.md](./REAL_TRADING_GUIDE.md)** — Real trading setup
+- **[TRADING_SYSTEM.md](./TRADING_SYSTEM.md)** — Trading engine documentation
+- **[docs/](./docs/)** — API documentation and guides
 
-## 🚢 Deployment
+## 🤝 Contributing
 
-Deploy to [Vercel](https://vercel.com) for instant preview deployments on every PR.
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
 ## 📄 License
 
-MIT
+MIT License — Feel free to use this project for learning and development.
 
+## ⚠️ Disclaimer
+
+This project is for **educational and demonstration purposes**. Trading cryptocurrencies involves significant risk. Always:
+
+- Test thoroughly before using real funds
+- Start with small amounts
+- Understand the risks involved
+- Never invest more than you can afford to lose
+- Use paper trading mode for learning
+
+**NEURAL/ORDER is not financial advice.** Use at your own risk.
+
+---
+
+Built with ❤️ for the crypto trading community
