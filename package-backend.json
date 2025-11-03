@@ -1,0 +1,22 @@
+{
+  "name": "aster-royale-backend",
+  "version": "1.0.0",
+  "description": "Standalone trading worker for Aster Royale",
+  "main": "backend/trading-worker.js",
+  "scripts": {
+    "start:backend": "node backend/trading-worker.js",
+    "dev:backend": "nodemon backend/trading-worker.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.29.0",
+    "@google/generative-ai": "^0.21.0",
+    "dotenv": "^16.0.0",
+    "mongoose": "^8.0.0",
+    "node-fetch": "^2.7.0",
+    "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
+

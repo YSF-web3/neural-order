@@ -1,0 +1,477 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts - Doto for the arena */
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Custom CSS variables for brutalist pixel art theme */
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --primary: 142 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 142 70% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --radius: 0;
+  }
+
+  * {
+    @apply border-gray-900;
+  }
+
+  body {
+    @apply bg-black text-white antialiased;
+    font-family: "Doto", sans-serif;
+    font-weight: 600;
+    overflow-x: hidden;
+  }
+
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+/* Brutalist pixel art utilities */
+@layer utilities {
+  /* Hard pixel borders - always white on black */
+  .pixel-border {
+    border: 4px solid white;
+    box-shadow: 
+      4px 4px 0 0 rgba(0, 0, 0, 1),
+      8px 8px 0 0 rgba(0, 0, 0, 1);
+  }
+
+  .pixel-border-inset {
+    border: 4px solid white;
+    box-shadow: 
+      inset 4px 4px 0 0 rgba(0, 0, 0, 1),
+      inset -4px -4px 0 0 rgba(255, 255, 255, 0.5);
+  }
+
+  /* Black card with white border */
+  .brutal-card {
+    background: black;
+    border: 4px solid white;
+    box-shadow: 0 0 0 2px black;
+  }
+
+  /* White card with black border */
+  .brutal-card-white {
+    background: white;
+    color: black;
+    border: 4px solid black;
+  }
+
+  /* Consistent brutal button style */
+  .brutal-button {
+    background: white;
+    color: black;
+    border: 4px solid black;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: transform 0.1s;
+  }
+
+  .brutal-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 0 black;
+  }
+
+  /* Black button with white border */
+  .brutal-button-black {
+    background: black;
+    color: white;
+    border: 4px solid white;
+  }
+
+  .brutal-button-black:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 0 white;
+  }
+
+  /* Pixel text styling */
+  .pixel-text {
+    font-family: "Press Start 2P", monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: normal;
+  }
+  
+  /* Doto heading style */
+  .heading-doto {
+    font-family: "Doto", sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+
+  /* Pulse animation for active elements */
+  .pixel-pulse {
+    animation: pixelPulse 1s ease-in-out infinite;
+  }
+
+  @keyframes pixelPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Scanline effect overlay */
+  .scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .scanline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15) 0px,
+      transparent 2px,
+      transparent 4px,
+      transparent 0px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    height: 100vh;
+    width: 100%;
+  }
+
+  /* Brutal background pattern */
+  .brutal-bg {
+    background-color: #000;
+    background-image: 
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    position: relative;
+  }
+
+  /* Animated grid overlay */
+  .brutal-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 0);
+    background-size: 64px 64px;
+    animation: gridShift 20s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes gridShift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(64px, 64px); }
+  }
+
+  /* Terminal-style corner decorations */
+  .terminal-corner {
+    position: relative;
+  }
+
+  .terminal-corner::before,
+  .terminal-corner::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 4px solid white;
+  }
+
+  .terminal-corner::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .terminal-corner::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+  }
+
+  /* Pixel grid background pattern */
+  .pixel-grid {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* ASCII border decorations */
+  .ascii-border {
+    border: 4px solid white;
+    position: relative;
+  }
+
+  .ascii-border::before {
+    content: '+';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    color: white;
+    font-family: monospace;
+    font-size: 12px;
+  }
+
+  .ascii-border::after {
+    content: '+';
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    color: white;
+    font-family: monospace;
+    font-size: 12px;
+  }
+
+  /* Pixel separator line */
+  .pixel-separator {
+    height: 4px;
+    background: white;
+    position: relative;
+    margin: 16px 0;
+  }
+
+  .pixel-separator::before,
+  .pixel-separator::after {
+    content: '▶';
+    position: absolute;
+    color: white;
+    font-size: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .pixel-separator::before {
+    left: -12px;
+  }
+
+  .pixel-separator::after {
+    right: -12px;
+  }
+
+  /* Brutal hover effect */
+  .brutal-hover {
+    transition: all 0.1s;
+  }
+
+  .brutal-hover:hover {
+    transform: translate(-2px, -2px);
+  }
+
+  /* Dead pixel effect */
+  .dead-pixel {
+    position: relative;
+  }
+
+  .dead-pixel::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: red;
+    top: 2px;
+    left: 2px;
+  }
+
+  /* 8-bit style divider */
+  .pixel-divider {
+    height: 4px;
+    background: white;
+    box-shadow: 0 4px 0 0 black;
+  }
+
+  /* Glitch effect */
+  .pixel-glitch {
+    animation: glitch 0.3s infinite;
+  }
+
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+
+  /* Status indicator styles */
+  .status-dot {
+    width: 12px;
+    height: 12px;
+    border: 2px solid black;
+  }
+
+  .status-dot-live {
+    background: #10ff00;
+    box-shadow: 0 0 10px #10ff00;
+  }
+
+  .status-dot-inactive {
+    background: #555;
+  }
+
+  /* Binary code background */
+  .binary-bg {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 0, 0.03) 2px,
+      rgba(0, 255, 0, 0.03) 4px
+    );
+  }
+
+  /* Doto font utility class */
+  .doto {
+    font-family: "Doto", sans-serif;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+  /* Retro computer terminal style */
+  .terminal-text {
+    font-family: "Doto", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+  }
+
+  /* Number counter style */
+  .counter-text {
+    font-family: "Doto", sans-serif;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 1px;
+    font-weight: 800;
+  }
+
+  /* Pixel frame borders */
+  .pixel-frame {
+    position: relative;
+    border: 4px solid white;
+  }
+
+  .pixel-frame::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid white;
+    background: black;
+  }
+
+  .pixel-frame::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid white;
+    background: black;
+  }
+
+  /* Glow effect for lime green elements */
+  .glow-lime {
+    text-shadow: 0 0 10px rgba(16, 255, 0, 0.5);
+  }
+
+  /* Pulse glow animation */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(16, 255, 0, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(16, 255, 0, 0.8); }
+  }
+
+  /* Staggered pixel rows effect */
+  .pixel-row {
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.03) 3px,
+      rgba(255, 255, 255, 0.03) 6px
+    );
+  }
+
+  /* Corner pixel decorations */
+  .corner-decoration {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 2px solid white;
+    background: black;
+  }
+
+  .corner-tl { top: -2px; left: -2px; }
+  .corner-tr { top: -2px; right: -2px; border-left: none; }
+  .corner-bl { bottom: -2px; left: -2px; border-top: none; }
+  .corner-br { bottom: -2px; right: -2px; border-top: none; border-left: none; }
+
+  /* Diagonal line pattern */
+  .diagonal-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.02) 10px,
+      rgba(255, 255, 255, 0.02) 20px
+    );
+  }
+
+  /* Typing animation ellipsis */
+  .typing-ellipsis {
+    display: inline-block;
+    width: auto;
+    animation: ellipsisBlink 1.2s ease-in-out infinite;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    animation: cursorBlink 1s ease-in-out infinite;
+    color: lime;
+    font-weight: bold;
+  }
+
+  @keyframes cursorBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes ellipsisBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+}
+
